@@ -4,9 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>關於我</title>
+    <style>
+        body{
+            background-color: rgb(255, 255, 200);
+        }
+        div{
+            background-color: white;
+        }
+        table{
+            border: 5px dotted orange;
+        }
+        a{
+            text-decoration: none; /*去除底線*/
+            color: rgb(50, 200, 255)
+        }
+        a:hover{
+            color: rgb(255, 0, 0);
+        }
+        li{
+            color: rgb(0, 0, 110);
+            font-size: 20px;
+            font-weight: bold;
+        }
+        /*長方塊*/
+        .title-with-box {
+            position: relative;
+            padding-left: 30px;  /* 為方塊留出空間 */
+        }
+        .title-with-box::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%); /*Y軸（垂直方向）上移動元素*/
+            width: 10px;/* 大小 */
+            height: 40px; 
+            background-color: rgb(0, 162, 255);  /* 顏色 */
+        }
+    
+    </style>
 </head>
 <body>
-    <p>我是一個好學生</p>
-    <img src="img/p.png" alt="南瓜"/>
+    <div width="80%"  align="center">  <!--水平置中-->
+        <table>
+            <tr>
+                <td width="300px">
+                    <h1 class="title-with-box">基本資料</h1>
+                    <li>姓名: 蔡一菁</li>
+                    <li>電話: 0912345678</li>
+                    <li>地址: 台南市</li>
+                    <li>E-mail: 5b1g0030@stust.edu.tw</li>
+                    <li>學校: 南台科技大學 <a href="https://www.stust.edu.tw/tc/student" target="_blank">學校網站</a></li>
+                    <li>科系: 資訊工程</li>
+                    <li>學歷: 高三</li>
+                    <li><a href="index.html">回首頁</a></li>
+                </td>
+                <td width="150px">
+                    <img src="img/p.png" alt="南瓜"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="title-with-box">我的興趣</h2>
+                    <li>畫畫</li>
+                    <li>寫/看小說</li>
+                    <li>跟AI聊天</li>
+                    <li>寫遊戲程式</li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 class="title-with-box">我的夢想</h2>
+                    <li>當一名作家</li>
+                    <li>當一名插畫家</li>
+                    <li>製作屬於自己的機器人</li>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

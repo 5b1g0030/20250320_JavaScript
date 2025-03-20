@@ -16,6 +16,7 @@
             border: 5px dotted orange;
             margin: 0 auto;
             background-color: white;
+            padding: 10px;
         }
         .a_color{
             text-decoration: none; /*去除底線*/
@@ -31,14 +32,15 @@
         }
         /*長方塊*/
         .title-with-box {
-            position: relative;
+            position: relative; /*為藍色方塊（.title-with-box::before）創建定位上下文*/
             padding-left: 30px;  /* 為方塊留出空間 */
         }
-        .title-with-box::before {
+        /*在標題前面插入方塊*/
+        .title-with-box::before { 
             content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
+            position: absolute; /*絕對定位，讓藍色方塊脫離正常文檔流*/
+            left: 0; /* 貼齊左側 */
+            top: 50%; /* 垂直置中 */
             transform: translateY(-50%); /*Y軸（垂直方向）上移動元素*/
             width: 10px;/* 大小 */
             height: 40px; 
@@ -61,6 +63,8 @@
                     <li>學校: 南台科技大學 <a class="a_color" href="https://www.stust.edu.tw/tc/student" target="_blank">學校網站</a></li>
                     <li>科系: 資訊工程</li>
                     <li>學歷: 高三</li>
+                    <li>研究指導老師：許智淵</li>
+                    <li>研究主題：影像處理、智能機械</li>
                 </td>
                 <td width="150px">
                     <img src="img/p.png" alt="南瓜"/>

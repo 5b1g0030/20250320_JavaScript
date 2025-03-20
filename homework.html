@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript作業</title>
+    <style>
+        div{
+            background-color: white;
+            width: 80%;
+            margin: 0 auto; /*水平置中*/
+        }
+        table, tr ,td{
+            margin: 0 auto; /*水平置中*/
+            background-color: wheat;
+            border: 1px solid black;
+            border-collapse: collapse; /*去除雙邊框*/
+        }
+        td{
+            padding: 5px;
+        }
+    </style>
+    <script>
+        function myFuntion(){
+            var n = document.getElementById("unmberInput").value; /*取得輸入的值*/
+            //alert("輸入的數值是: " +n);
+            var str = "<table>";
+            for(let i=0; i<n; i++){
+                str += "<tr>";
+                for(let j=1; j<=n; j++){
+                    str += `<td> ${i} * ${j} = ${i*j} </td>`;
+                }
+            }
+            str += "</table>";
+            document.getElementById("myid").innerHTML = str; //輸出
+        }
+    </script>
 </head>
 <body>
+    <a href="index.html">回首頁</a>
+    <a href="about.html">關於我</a>
     <h1>N*N乘法表</h1>
-    
+    <input type="number" id="unmberInput" placeholder="請輸入數字">
+    <input type="button" onclick="myFuntion()" value="計算" title="OK">
+    <div id="myid"></div>
 </body>
 </html>

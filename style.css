@@ -8,5 +8,27 @@ body{
     height: 100vh; /*設定高度為「視窗高度」*/
     margin: 10px;
     border: 10px dashed rgb(255, 119, 0);
+    border-radius: 10px; /*設定圓角*/
+}
+#game-info{
+    background-color: rgb(255, 213, 159);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 80%;
     border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+}
+#controls{
+    background-color: rgb(255, 213, 159);
+
+}
+#game-container{
+    background-color: rgb(116, 116, 116);
+    height: 100px;
+}
+.game-area{
+    width: 500px;
+    border-radius: 10px;
+    padding: 50px;
+    margin: 5px;
 }

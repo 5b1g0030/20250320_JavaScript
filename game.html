@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Water Puzzle</title>
     <link rel = "stylesheet" href = "style.css">
-    <link rel = "javascript" href = "waterpuzzle.js">
+    <script src="waterpuzzle.js"></script>
 
 
 </head>
 <body>
     <h1>2025 Water Puzzle Game</h1>
     <div id="game-info">
+        <p>關卡：<span id="level-count">1</span></p>
         <p>移動次數：</p>
-
+        
     </div>
-    <div id="controls">
+    <div id="controls" >
         <label for="level-select">選擇關卡</label>
         <!-- 關卡選項(下拉選單) -->
-        <select id="level-select">
+        <select id="level-select" >
             <option value="1">Level 1</option>
             <option value="2">Level 2</option>
             <option value="3">Level 3</option>
@@ -31,9 +32,10 @@
             <option value="10">Level 10</option>
         </select>
         <button id="play-button">PLAY</button>
+    </div>
         <div id="game-container" class="game-area">
 
         </div>
-    </div>
+    
 </body>
 </html>

@@ -4,68 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>基本知識</title>
-    <style>
-        .dropdown {
-            margin-bottom: 10px; /*設定下拉選單容器底部的外邊距*/
-        }
-
-        /*下拉選單標題區域樣式*/
-        .dropdown-title { 
-            background-color: #f8f9fa;
-            padding: 10px;
-            cursor: pointer; /*游標變成手指形狀*/
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        /*下拉選文字區域樣式*/
-        .dropdown-content { 
-            max-height: 0; /*使下拉內容在未展開時完全隱藏*/
-            overflow: hidden; /*隱藏超出容器高度的內容*/
-            opacity: 0; /*設定內容的透明度為 0（完全透明）*/
-            transform: translateY(-20px); /*Y 軸（垂直方向）向下移動*/
-            transition: all 0.6s ease-out; /*設定所有屬性的過渡動畫、持續時間*/
-            background-color: white;
-            border: 1px solid #ddd;
-            border-top: none;
-            padding: 0 10px;
-        }
-
-        /*
-        當滑鼠懸停（:hover）在 .dropdown 元素上時
-        會套用這些樣式到其內部的 .dropdown-content 元素
-        */
-        .dropdown:hover .dropdown-content {
-            max-height: 1000px; /*內容區域的最大高度*/
-            opacity: 1; /*透明度(完全不透明)*/
-            transform: translateY(0); /*取消原本的向上位移效果*/
-            padding: 10px;
-        }
-
-        /* 移除清單符號並調整間距 */
-        .dropdown-content ul {
-            list-style: none;
-            padding-left: 20px;
-            margin: 5px 0;
-        }
-
-        /* 標題樣式 (指定在 .dropdown 內的指定標籤) */
-        .dropdown h3 {
-            margin: 0;
-        }
-        .dropdown h4 {
-            margin: 10px 0 5px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="CSS\Link_CSS.css">
+    <link rel="stylesheet" href="CSS\Dropdown.css">
 </head>
 <body>
-    <a href="index.html">回首頁</a>
-    <a href="about.html">關於我</a>
-    <a href="homework.html">作業</a>
-    <a href="research.html">研究</a>
+    <nav style="margin: 15px 0; text-align: center;">
+        <a href="index.html">回首頁</a>
+        <a href="about.html">關於我</a>
+        <a href="homework.html">作業</a>
+        <a href="research.html">研究</a>
+        <a href="game.html">遊戲</a>
+    </nav>
     <div class="dropdown">
         <div class="dropdown-title">
-            <h3>🌟 1. 硬體相關技術</h3>
+            <h3>📌 1. 硬體相關技術</h3>
         </div>
         <div class="dropdown-content">
             <h4>✅ 基礎硬體知識</h4>
@@ -88,7 +40,7 @@
     
     <div class="dropdown">
         <div class="dropdown-title">
-            <h3>🌟 2. 軟體相關技術</h3>
+            <h3>📌 2. 軟體相關技術</h3>
         </div>
         <div class="dropdown-content">
             <h4>✅ 嵌入式系統開發</h4>
@@ -112,7 +64,7 @@
     
     <div class="dropdown">
         <div class="dropdown-title">
-            <h3>🌟 3. AI/互動技術</h3>
+            <h3>📌 3. AI/互動技術</h3>
         </div>
         <div class="dropdown-content">
             <h4>✅ 自然語言處理 (NLP)</h4>
@@ -142,7 +94,7 @@
     
     <div class="dropdown">
         <div class="dropdown-title">
-            <h3>🌟 4. 設計與體驗優化</h3>
+            <h3>📌 4. 設計與體驗優化</h3>
         </div>
         <div class="dropdown-content">
             <h4>✅ 外觀設計</h4>
@@ -160,7 +112,7 @@
                 <li>簡單易用的設定介面。</li>
                 <li>長期陪伴的舒適感 (例如學習用戶的習慣或給予適當回應)。</li>
             </ul>
-            <h3>🌟 5. 開發流程與工具</h3>
+            <h3>5. 開發流程與工具</h3>
             <h4>✅ 規劃與需求分析</h4>
             <ul>
                 <li>功能需求定義 (必備功能 vs 加分功能)。</li>

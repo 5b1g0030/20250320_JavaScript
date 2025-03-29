@@ -1,0 +1,67 @@
+
+/*下拉選單樣式*/
+.dropdown {
+    margin-bottom: 10px; /*設定下拉選單容器底部的外邊距*/
+    width: 600px;
+    border: 5px solid #00aeff;
+    border-radius: 10px;
+    margin: 5px auto;
+}
+
+/*下拉選單標題區域樣式*/
+.dropdown-title { 
+    background-color: #f8f9fa;
+    padding: 10px;
+    cursor: pointer; /*游標變成手指形狀*/
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: rgb(134, 217, 255);
+    
+}
+
+/*下拉選單文字區域樣式*/
+.dropdown-content { 
+    max-height: 0; /*使下拉內容在未展開時完全隱藏*/
+    overflow: hidden; /*隱藏超出容器高度的內容*/
+    opacity: 0; /*設定內容的透明度為 0（完全透明）*/
+    transform: translateY(-20px); /*Y 軸（垂直方向）向下移動*/
+    transition: all 0.7s ease-out; /*設定所有屬性的過渡動畫、持續時間*/
+    background-color: white;
+    border-top: none;
+    padding: 0 10px;
+}
+
+/*
+當滑鼠懸停（:hover）在 .dropdown 元素上時
+會套用這些樣式到其內部的 .dropdown-content 元素
+*/
+.dropdown:hover .dropdown-content {
+    max-height: 1000px; /*內容區域的最大高度*/
+    opacity: 1; /*透明度(完全不透明)*/
+    transform: translateY(0); /*取消原本的向上位移效果*/
+    padding: 10px;
+}
+
+/* 移除清單符號並調整間距 */
+.dropdown-content ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+/* 標題樣式 (指定在 .dropdown 內的指定標籤) */
+.dropdown h3 {
+    margin: 5px; /*設定標題的外邊距*/
+}
+.dropdown h4 {
+    margin: 5px;
+}
+
+body{
+    background-image: url("../img/science.jpg");
+    background-repeat: no-repeat;
+    background-size: cover; /*自動縮放圖片以覆蓋整個容器*/
+    background-position: center center; /*圖片置中*/
+    background-attachment: fixed; /*背景不隨畫面移動*/
+    margin:0; /*移除外邊距*/
+}

@@ -1,0 +1,16 @@
+nav a{
+    background-color: burlywood;
+    padding: 10px;
+    border: 1px solid gold;
+    text-decoration: none;
+}
+nav a:link{
+    color: red;
+}
+nav a:visited{
+    color: green;
+}
+nav a:hover{
+    color: blue;
+    font-weight: bold;
+}

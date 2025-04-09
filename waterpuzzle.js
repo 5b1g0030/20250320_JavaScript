@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const tubes = []; // 試管
     const colors = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "brown", "gray", "cyan", "magenta", "lime", "teal", "indigo", "violet"]; // 試管顏色
     let levelCount = 1; // 關卡編號(預設為 1)
+    let selectedTube = null; // 選擇的試管
 
     // ----- 根據玩家選擇顯示關卡編號
     function chooseLabel(level){
@@ -22,7 +23,39 @@ document.addEventListener("DOMContentLoaded",()=>{
         const selectedLevel = parseInt(event.target.value, 10);
         chooseLabel(selectedLevel); // 傳入玩家選擇的關卡編號
     });
-
+    // ----- 選擇試管
+    function selectTube(tube){
+        if(selectedTube){
+            if(selectedTube !== tube){
+                pourWater(selectedTube, tube);
+            }
+            selectedTube.classList.remove("selected");
+            selectedTube = null;
+        }
+        else{
+            selectedTube = tube;
+            selectedTube.classList.add("selected");
+        }
+    }
+    // ----- 倒水
+    function pourWater(fromTube, toTube){
+        let formWater = fromTute.querySelector(".water:last-child"); // 取得最後一個水塊
+        let toWater = toTute.querySelector(".water:last-child");
+        if(!toWater){
+            const color = fromWater ? fromWater.style.backgroundColor : null;
+            while(fromWater && fromWater.style.backgroundColor === color && toTube.childElementCount < 4){
+                toTube.appendChild(fromWater);
+                fromWater = fromTube.querySelector(".water:last-child");
+            }
+        }
+        else{
+            while(fromWater && fromWater.style.backgroundColor === toWater.style.backgroundColor && toTube.childElementCount < 4){
+                toTube.appendChild(fromWater);
+                fromWater = fromTube.querySelector(".water:last-child");
+                toWater = toTube.querySelector(".water:last-child");
+            }
+        }
+    }
     // ----- 創建試管
     function createTubes(){
         //gameContainer.innerHTML += "產生試管"; // 將文字顯示在網頁上
@@ -31,7 +64,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         for(let i=0; i<levelCount+1; i++){
             const tube = document.createElement("div"); // 創建 div 元素
             tube.classList.add("tube"); // 將 tube樣式加入 tube 類別
-            // 新增試管tube事件處理常式
+            tube.addEventListener("click",()=>{selectTube(tube)}); // 新增試管tube事件處理常式
             gameContainer.appendChild(tube); // 將 tube 加入 gameContainer
             tubes.push(tube); // 將 tube 加入 tubes 陣列
         }
@@ -39,6 +72,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         for(let i=0; i<2; i++){
             const empyTube = document.createElement("div");
             empyTube.classList.add("tube"); // 將 tube樣式加入 tube 類別
+            empyTube.addEventListener("click",()=>{selectTube(empyTube)}); // 新增試管tube事件處理常式
             gameContainer.appendChild(empyTube);
             tubes.push(empyTube);
         }
@@ -79,8 +113,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     playButton.addEventListener("click",()=>{
         //alert("遊戲開始"); // 彈出"遊戲開始"的訊息
         tubes.length = 0; // 清空試管
-        createTubes();  
-        fillTubes();
+        createTubes(); // 創建試管
+        fillTubes(); // 填入試管顏色
 
 
     });

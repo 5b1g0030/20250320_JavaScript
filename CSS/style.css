@@ -50,3 +50,8 @@ body{
 .water{
     width: 100%;
 }
+.tube.selected{
+    border-color: red;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.748);
+    transform: translateY(-20px);
+}

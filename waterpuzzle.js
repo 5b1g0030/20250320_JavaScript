@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     function selectTube(tube){
         if(selectedTube){
             if(selectedTube !== tube){
-                pourWater(selectedTube, tube);
+                pourWater(selectedTube, tube); // 傳入兩個選取的試管
             }
             selectedTube.classList.remove("selected");
             selectedTube = null;
@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     }
     // ----- 倒水
     function pourWater(fromTube, toTube){
-        let formWater = fromTute.querySelector(".water:last-child"); // 取得最後一個水塊
-        let toWater = toTute.querySelector(".water:last-child");
+        let fromWater = fromTube.querySelector(".water:last-child"); // 取得最後一個水塊
+        let toWater = toTube.querySelector(".water:last-child");
         if(!toWater){
             const color = fromWater ? fromWater.style.backgroundColor : null;
             while(fromWater && fromWater.style.backgroundColor === color && toTube.childElementCount < 4){

@@ -23,39 +23,45 @@ document.addEventListener("DOMContentLoaded",()=>{
         const selectedLevel = parseInt(event.target.value, 10);
         chooseLabel(selectedLevel); // 傳入玩家選擇的關卡編號
     });
+
     // ----- 選擇試管
     function selectTube(tube){
-        if(selectedTube){
-            if(selectedTube !== tube){
-                pourWater(selectedTube, tube); // 傳入兩個選取的試管
+        if(selectedTube){ // 如果有已選取的試管
+            if(selectedTube !== tube){ // 如果選取的不是同一個試管
+                pourWater(selectedTube, tube); // 將水從已選中的試管倒入新點擊的試管
             }
-            selectedTube.classList.remove("selected");
-            selectedTube = null;
+            selectedTube.classList.remove("selected"); // 移除選取的試管的選取狀態(CSS)
+            selectedTube = null; // 清空選中的試管
         }
-        else{
-            selectedTube = tube;
-            selectedTube.classList.add("selected");
+        else{ // 如果選取的不是同一個試管
+            selectedTube = tube; // 將選取的試管儲存起來
+            selectedTube.classList.add("selected"); // 將選取的試管加上選取狀態(CSS)
         }
     }
+
     // ----- 倒水
     function pourWater(fromTube, toTube){
-        let fromWater = fromTube.querySelector(".water:last-child"); // 取得最後一個水塊
+        // 取得來源試管和目標試管最上方的水塊
+        let fromWater = fromTube.querySelector(".water:last-child"); // 取得在上方的水塊
         let toWater = toTube.querySelector(".water:last-child");
-        if(!toWater){
-            const color = fromWater ? fromWater.style.backgroundColor : null;
+        if(!toWater){ // 情況1：目標試管是空的
+            const color = fromWater ? fromWater.style.backgroundColor : null; // 獲取來源水塊的顏色(條件 ? 條件為真時的值 : 條件為假時的值;)
+            // 來源試管有水、顏色相同且目標試管未滿時，「倒水並更新來源試管最上方的數塊顏色」
             while(fromWater && fromWater.style.backgroundColor === color && toTube.childElementCount < 4){
-                toTube.appendChild(fromWater);
-                fromWater = fromTube.querySelector(".water:last-child");
+                toTube.appendChild(fromWater); // 移動水塊到目標試管
+                fromWater = fromTube.querySelector(".water:last-child"); // 更新來源試管的最上方水塊
             }
         }
-        else{
+        else{ // 情況2：目標試管有水
+            // 來源有水、顏色與目標試管最上方水塊相同、目標試管未滿時，「倒水並更新來源試管和目標試管最上方的水塊顏色」
             while(fromWater && fromWater.style.backgroundColor === toWater.style.backgroundColor && toTube.childElementCount < 4){
                 toTube.appendChild(fromWater);
-                fromWater = fromTube.querySelector(".water:last-child");
-                toWater = toTube.querySelector(".water:last-child");
+                fromWater = fromTube.querySelector(".water:last-child"); // 更新來源試管的最上方水塊
+                toWater = toTube.querySelector(".water:last-child"); // 更新目標試管的最上方水塊
             }
         }
     }
+
     // ----- 創建試管
     function createTubes(){
         //gameContainer.innerHTML += "產生試管"; // 將文字顯示在網頁上
@@ -81,26 +87,26 @@ document.addEventListener("DOMContentLoaded",()=>{
     // ----- 填入試管顏色
     function fillTubes(){
         //gameContainer.innerHTML += "填入試管顏色";
-        const gameColors = colors.slice(0,Math.min(levelCount+1, colors.length)); // 根據關卡編號決定填入顏色的數量
+        const gameColors = colors.slice(0,Math.min(levelCount+1, colors.length)); // 根據關卡編號決定填入顏色的種類
         const waterBlocks = []; // 水塊
         // 對於每個顏色產生四個block
         gameColors.forEach((color)=> {
             for (let i=0; i<4; i++){
-                waterBlocks.push(color);
+                waterBlocks.push(color); // 將顏色加入 waterBlocks 陣列
             }
         });
         // 打亂水塊顏色
-        waterBlocks.sort(()=> 0.5-Math.random());
+        waterBlocks.sort(()=> 0.5-Math.random()); //「快速隨機打亂陣列」寫法
         // 將waterBlocks的顏色分散在不同試管內
         let blockIndex = 0;
         tubes.slice(0, levelCount+1).forEach((tube)=>{
             for(let i=0; i<4; i++){
                 if(blockIndex<waterBlocks.length){
-                    const water = document.createElement("div");
-                    water.classList.add("water");
-                    water.style.backgroundColor = waterBlocks[blockIndex];
-                    water.style.height = "20%";
-                    tube.appendChild(water);
+                    const water = document.createElement("div"); // 創建 div 元素
+                    water.classList.add("water"); // 將添加樣式(CSS)
+                    water.style.backgroundColor = waterBlocks[blockIndex]; // 設定水塊的顏色(陣列分配)
+                    water.style.height = "20%"; // 設定水塊的高度
+                    tube.appendChild(water); // 將水塊加入 tube
                     blockIndex++;  
                 }
             }

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript作業</title>
-    <link rel="stylesheet" href="Link_CSS.css">
+    <link rel="stylesheet" href="CSS/Link_CSS.css">
+    <link rel="stylesheet" href="CSS/homework_style.css">
     <style>
-        div{
+        div.NNmuti{
             background-color: white;
             width: 80%;
             margin: 0 auto; /*水平置中*/
@@ -45,8 +46,11 @@
         <a href="game.html">遊戲</a>
     </nav>
     <h1>N*N乘法表</h1>
-    <input type="number" id="unmberInput" placeholder="請輸入數字">
-    <input type="button" onclick="myFuntion()" value="計算" title="OK">
-    <div id="myid"></div>
+    <div class="inputCenter">
+        <input type="number" id="unmberInput" placeholder="請輸入數字">
+        <input type="button" onclick="myFuntion()" value="計算" title="OK">
+    </div>
+    
+    <div id="myid" class="NNmuti"></div>
 </body>
 </html>

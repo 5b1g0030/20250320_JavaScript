@@ -39,6 +39,29 @@ document.addEventListener("DOMContentLoaded",()=>{
         }
     }
 
+    // ----- 檢查遊戲是否勝利
+    function checkGameState(){
+        const allSamecolor = tube => {
+            const waters = Array.from(tube.children);
+            return waters.length === 4 && 
+            waters.every((water) => 
+                water.style.backgroundColor === waters[0].style.backgroundColor);
+        };
+        // 檢查所有試管是否都填滿了相同顏色的水
+        let completedTubes = 0;
+        tubes.forEach(tube =>{
+            if(allSamecolor(tube)){
+                completedTubes++;
+            }
+        });
+        document.getElementById("completed-tubes-count").textContent = completedTubes; // 更新完成的試管數量
+        // 檢查是否所有試管都完成或者是空試管
+        if(tubes.every(tube => tube.childElementCount===0 || allSamecolor(tube))){
+            alert("你已經完成本關卡");
+        }
+
+    }
+
     // ----- 倒水
     function pourWater(fromTube, toTube){
         // 取得來源試管和目標試管最上方的水塊
@@ -60,6 +83,8 @@ document.addEventListener("DOMContentLoaded",()=>{
                 toWater = toTube.querySelector(".water:last-child"); // 更新目標試管的最上方水塊
             }
         }
+        // 檢查遊戲是否勝利
+        checkGameState();
     }
 
     // ----- 創建試管

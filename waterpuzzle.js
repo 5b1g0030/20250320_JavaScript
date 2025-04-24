@@ -57,10 +57,25 @@ document.addEventListener("DOMContentLoaded",()=>{
         document.getElementById("completed-tubes-count").textContent = completedTubes; // 更新完成的試管數量
         // 檢查是否所有試管都完成或者是空試管
         if(tubes.every(tube => tube.childElementCount===0 || allSamecolor(tube))){
-            alert("你已經完成本關卡");
+            //alert("你已經完成本關卡");
+            if (levelCount === 10) { // 如果是第十關
+                alert("恭喜你，你通過了所有關卡！");
+            }
+            else{
+                alert("恭喜你，你通過了本關卡！");
+                // 下一關
+                levelCount++;
+                document.getElementById("level-select").value = levelCount; // 更新下拉選單選項
+                document.getElementById("completed-tubes-count").textContent = "0"; // 更新下拉選單選項
+                chooseLabel(levelCount); // 顯示下一關卡編號
+                createTubes(); // 創建試管
+                fillTubes(); // 填入試管顏色
+                
+            }
         }
 
     }
+
 
     // ----- 倒水
     function pourWater(fromTube, toTube){

@@ -7,20 +7,7 @@
     <link rel="stylesheet" href="CSS/Link_CSS.css">
     <link rel="stylesheet" href="CSS/homework_style.css">
     <style>
-        div.NNmuti{
-            background-color: white;
-            width: 80%;
-            margin: 0 auto; /*水平置中*/
-        }
-        table, tr ,td{
-            margin: 0 auto; /*水平置中*/
-            background-color: wheat;
-            border: 1px solid black;
-            border-collapse: collapse; /*去除雙邊框*/
-        }
-        td{
-            padding: 5px;
-        }
+       
     </style>
     <script>
         function myFuntion(){
@@ -30,7 +17,7 @@
             for(let i=0; i<n; i++){
                 str += "<tr>";
                 for(let j=1; j<=n; j++){
-                    str += `<td> ${i} * ${j} = ${i*j} </td>`;
+                    str += `<td> ${i} × ${j} = ${i*j} </td>`;
                 }
             }
             str += "</table>";
@@ -39,13 +26,13 @@
     </script>
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <a href="index.html">回首頁</a>
         <a href="about.html">關於我</a>
         <a href="research.html">研究</a>
         <a href="game.html">遊戲</a>
         <a href="https://5b1g0030.github.io/2025-react-app/"> Vite and React</a>
-    </nav>
+    </nav> -->
     <h1>N*N乘法表</h1>
     <div class="inputCenter">
         <input type="number" id="unmberInput" placeholder="請輸入數字">

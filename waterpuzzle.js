@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             selectedTube.classList.remove("selected"); // 移除選取的試管的選取狀態(CSS)
             selectedTube = null; // 清空選中的試管
         }
-        else{ // 如果選取的不是同一個試管
+        else{ // 如果選取的不是同一個試管或是剛選擇第一個試管
             selectedTube = tube; // 將選取的試管儲存起來
             selectedTube.classList.add("selected"); // 將選取的試管加上選取狀態(CSS)
         }
@@ -41,12 +41,15 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     // ----- 檢查遊戲是否勝利
     function checkGameState(){
+        // 箭頭函式，判斷試管裡的水是否都是同一種顏色而且剛好4個
         const allSamecolor = tube => {
-            const waters = Array.from(tube.children);
+            const waters = Array.from(tube.children); // 將試管中的水塊轉換為陣列
+            // 檢查水塊的數量是否為4且顏色是否相同
             return waters.length === 4 && 
-            waters.every((water) => 
+                waters.every((water) => 
                 water.style.backgroundColor === waters[0].style.backgroundColor);
         };
+
         // 檢查所有試管是否都填滿了相同顏色的水
         let completedTubes = 0;
         tubes.forEach(tube =>{
@@ -54,7 +57,10 @@ document.addEventListener("DOMContentLoaded",()=>{
                 completedTubes++;
             }
         });
-        document.getElementById("completed-tubes-count").textContent = completedTubes; // 更新完成的試管數量
+        
+        // 更新完成的試管數量
+        document.getElementById("completed-tubes-count").textContent = completedTubes;
+        
         // 檢查是否所有試管都完成或者是空試管
         if(tubes.every(tube => tube.childElementCount===0 || allSamecolor(tube))){
             //alert("你已經完成本關卡");
@@ -82,9 +88,11 @@ document.addEventListener("DOMContentLoaded",()=>{
         // 取得來源試管和目標試管最上方的水塊
         let fromWater = fromTube.querySelector(".water:last-child"); // 取得在上方的水塊
         let toWater = toTube.querySelector(".water:last-child");
+
         if(!toWater){ // 情況1：目標試管是空的
             const color = fromWater ? fromWater.style.backgroundColor : null; // 獲取來源水塊的顏色(條件 ? 條件為真時的值 : 條件為假時的值;)
-            // 來源試管有水、顏色相同且目標試管未滿時，「倒水並更新來源試管最上方的數塊顏色」
+            
+            // 來源試管有水、顏色相同且目標試管未滿時，「倒水並更新來源試管最上方的水塊顏色」
             while(fromWater && fromWater.style.backgroundColor === color && toTube.childElementCount < 4){
                 toTube.appendChild(fromWater); // 移動水塊到目標試管
                 fromWater = fromTube.querySelector(".water:last-child"); // 更新來源試管的最上方水塊
@@ -107,14 +115,16 @@ document.addEventListener("DOMContentLoaded",()=>{
         //gameContainer.innerHTML += "產生試管"; // 將文字顯示在網頁上
         gameContainer.innerHTML = "";
         tubes.length = 0; // 清空試管
+
+        // 需要裝水的試管
         for(let i=0; i<levelCount+1; i++){
-            const tube = document.createElement("div"); // 創建 div 元素
-            tube.classList.add("tube"); // 將 tube樣式加入 tube 類別
-            tube.addEventListener("click",()=>{selectTube(tube)}); // 新增試管tube事件處理常式
-            gameContainer.appendChild(tube); // 將 tube 加入 gameContainer
-            tubes.push(tube); // 將 tube 加入 tubes 陣列
+            const tube = document.createElement("div"); // 創建 div 元素(儲存在tube變數)
+            tube.classList.add("tube"); // 將 'tube' 樣式加入 div 標籤(讓它有試管的外觀)
+            tube.addEventListener("click",()=>{selectTube(tube)}); // 新增試管(tube)事件處理常式，點擊時呼叫此函式
+            gameContainer.appendChild(tube); // 將試管(tube)加入 gameContainer(遊戲區)
+            tubes.push(tube); // 將產生的試管(tube)記錄起來(以陣列方式儲存)
         }
-        // 新增兩個空的試管當作緩衝
+        // 當作緩衝的空試管
         for(let i=0; i<2; i++){
             const empyTube = document.createElement("div");
             empyTube.classList.add("tube"); // 將 tube樣式加入 tube 類別
@@ -124,20 +134,25 @@ document.addEventListener("DOMContentLoaded",()=>{
         }
 
     }
+
     // ----- 填入試管顏色
     function fillTubes(){
         //gameContainer.innerHTML += "填入試管顏色";
-        const gameColors = colors.slice(0,Math.min(levelCount+1, colors.length)); // 根據關卡編號決定填入顏色的種類
+        // 根據關卡編號決定填入顏色的種類(數量:關卡號碼+1)
+        const gameColors = colors.slice(0,Math.min(levelCount+1, colors.length));
         const waterBlocks = []; // 水塊
-        // 對於每個顏色產生四個block
+
+        // 對於每個顏色產生四個水塊並記錄顏色(以陣列紀錄)
         gameColors.forEach((color)=> {
             for (let i=0; i<4; i++){
                 waterBlocks.push(color); // 將顏色加入 waterBlocks 陣列
             }
         });
+
         // 打亂水塊顏色
         waterBlocks.sort(()=> 0.5-Math.random()); //「快速隨機打亂陣列」寫法
-        // 將waterBlocks的顏色分散在不同試管內
+
+        // 將水塊的顏色分散在不同試管內
         let blockIndex = 0;
         tubes.slice(0, levelCount+1).forEach((tube)=>{
             for(let i=0; i<4; i++){
@@ -146,7 +161,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                     water.classList.add("water"); // 將添加樣式(CSS)
                     water.style.backgroundColor = waterBlocks[blockIndex]; // 設定水塊的顏色(陣列分配)
                     water.style.height = "20%"; // 設定水塊的高度
-                    tube.appendChild(water); // 將水塊加入 tube
+                    tube.appendChild(water); // 將水塊加入試管
                     blockIndex++;  
                 }
             }
